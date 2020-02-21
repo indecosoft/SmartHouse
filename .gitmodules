@@ -4,3 +4,6 @@
 [submodule "SmartHouse-Server"]
 	path = SmartHouse-Server
 	url = https://github.com/VFX10/SmartHouse-Server
+[submodule "SmartHouse-Mobile"]
+	path = SmartHouse-Mobile
+	url = https://github.com/VFX10/SmartHouse-Mobile

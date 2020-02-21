@@ -1,0 +1,17 @@
+{
+  "name": "smarthouse-mqtt",
+  "version": "1.0.0",
+  "description": "MQTT Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Voicu Babiciu",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.11.1",
+    "aedes": "^0.39.0",
+    "mqtt-connection": "^4.0.0",
+    "typescript": "^3.6.4"
+  }
+}
