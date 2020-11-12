@@ -6,7 +6,6 @@ var aedes = require('aedes')();
 var App = /** @class */ (function () {
     function App(server) {
         var _this = this;
-        this.server = server;
         // listen on port 1883
         server = net.createServer(aedes.handle);
         server.listen(config_1.port, function () {
@@ -33,7 +32,7 @@ var App = /** @class */ (function () {
                         var payload = {
                             cmd: 'publish',
                             topic: 'SensorsStatusChannel',
-                            payload: new Buffer(JSON.stringify(data)),
+                            payload: Buffer.from(JSON.stringify(data)),
                         };
                         aedes.publish(payload);
                         return callback(null, packet);
@@ -55,7 +54,7 @@ var App = /** @class */ (function () {
                     var payload = {
                         cmd: 'publish',
                         topic: 'SensorsStatusChannel',
-                        payload: new Buffer(JSON.stringify(data)),
+                        payload: Buffer.from(JSON.stringify(data)),
                     };
                     aedes.publish(payload);
                 }
@@ -117,7 +116,7 @@ var App = /** @class */ (function () {
                     return null;
             }
         };
-        aedes.authenticate = function (client, username, password, callback) {
+        aedes.authenticate = function (_client, _username, _password, callback) {
             callback(null, true, true);
         };
         console.log("MQTT server running on port " + config_1.port + "!");

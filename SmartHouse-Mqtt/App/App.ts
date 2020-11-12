@@ -13,7 +13,7 @@ export class App {
         return true;
     }
 
-    constructor(private server?: any) {
+    constructor(server?: any) {
 
         // listen on port 1883
         server = net.createServer(aedes.handle)
@@ -45,7 +45,7 @@ export class App {
                         const payload = {
                             cmd: 'publish',
                             topic: 'SensorsStatusChannel',
-                            payload: new Buffer(JSON.stringify(data)),
+                            payload: Buffer.from(JSON.stringify(data)),
                         }
                         aedes.publish(payload);
                         return callback(null, packet);
@@ -70,7 +70,7 @@ export class App {
                     const payload = {
                         cmd: 'publish',
                         topic: 'SensorsStatusChannel', 
-                        payload: new Buffer(JSON.stringify(data)),
+                        payload: Buffer.from(JSON.stringify(data)),
                     }
                     aedes.publish(payload);
                 }
@@ -135,9 +135,9 @@ export class App {
                     return null;
             }
         };
-        aedes.authenticate = function (client: any, username: any, password: any, callback: any) {
+        aedes.authenticate = function (_client: any, _username: any, _password: any, callback: any) {
 
-            callback(null, true, true);
+            callback(null, true, true); 
         };
         console.log(`MQTT server running on port ${port}!`);
     }
