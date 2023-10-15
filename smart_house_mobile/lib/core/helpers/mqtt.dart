@@ -23,7 +23,7 @@ class Mqtt {
   final ValueChanged<bool>? onStatusChanged;
   // final String macAddress;
   final String broker = '10.3.141.159';
-  final int port = 1883;
+  final int port = 9001;
   final String username = 'matteo';
   final String passwd = '1234';
   final String clientIdentifier = 'android';
@@ -39,7 +39,7 @@ class Mqtt {
       ..keepAlivePeriod = 30;
 
     final MqttConnectMessage connMess = MqttConnectMessage()
-        .withClientIdentifier('{"name": "voicubabiciu@gmail.com"}')
+        .withClientIdentifier('{"name": "test@test.com"}')
         // .keepAliveFor(
         //     60 * 5) // Must agree with the keep alive set above or not set
         .startClean() // Non persistent session for testing

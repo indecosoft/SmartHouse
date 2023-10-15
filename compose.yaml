@@ -10,7 +10,7 @@ services:
             - DB_USER=postgres
             - DB_PASSWORD=securePassword
             - DB_PORT=5432
-            - MQTT_URL="10.5.0.3"
+            - MQTT_URL=10.5.0.3
         ports:
             - '9000:5000'
         restart: always

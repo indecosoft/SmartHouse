@@ -7,11 +7,13 @@ import { router } from './Routes/Routes'
 import { port } from '../config';
 import mqttConnection from './Utils/Mqtt';
 import { db } from '../config';
+import { mqttOptions } from '../config';
 
 
 export class App {
   constructor(private app?: Koa) {
     console.log(db);
+    console.log(mqttOptions);
 
     this.app = new Koa();
     this.app
