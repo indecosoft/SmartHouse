@@ -15,7 +15,6 @@ services:
             - '9000:5000'
         restart: always
         image: smart_house_server:latest
-        build: https://raw.githubusercontent.com/voicubabiciu/SmartHouse/master/SmartHouse-Server/Dockerfile
         volumes:
           - ./mnt/external/containers/smarthouse/api:/usr/src/app
         networks:
@@ -28,7 +27,6 @@ services:
             - '9001:1883'
         restart: always
         image: smart_house_mqtt:latest
-        build: https://raw.githubusercontent.com/voicubabiciu/SmartHouse/master/SmartHouse-Mqtt/Dockerfile
         volumes:
           - ./mnt/external/containers/smarthouse/mqtt:/usr/src/app
         networks:
