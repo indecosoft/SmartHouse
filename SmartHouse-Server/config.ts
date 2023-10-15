@@ -1,9 +1,9 @@
 export const db = {
     host: process.env.DB_URL || 'localhost',
-    database: 'FamiliaSmartHouse',
+    database: process.env.DB_NAME || 'DatabaseName',
     user: 'postgres',
     port: Number(process.env.DB_PORT) || 1234,
-    password: 'PostgresConnect2016#Secure',
+    password: process.env.DB_PASSWORD || 'SecurePassword',
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000

@@ -1,0 +1,64 @@
+version: '3.3'
+services:
+    api:
+        hostname: smart-house-api
+        environment:
+            - PORT=5000
+            - MQTT_PORT=8001
+            - DB_URL='10.5.0.4'
+            - DB_NAME='SmartHouse'
+            - DB_PASSWORD='securePassword'
+            - DB_PORT=8002
+            - MQTT_URL='10.5.0.3'
+        ports:
+            - '8000:5000'
+        restart: always
+        image: smart_house_server:latest
+        volumes:
+          - ./test/smarthouse/api:/usr/src/app
+        networks:
+            vpcbr:
+                ipv4_address: 10.5.0.2
+
+    mqtt:
+        hostname: smart-house-mqtt
+        ports:
+            - '8001:1883'
+        restart: always
+        image: smart_house_mqtt:latest
+        volumes:
+          - ./test/smarthouse/mqtt:/usr/src/app
+        networks:
+            vpcbr:
+                ipv4_address: 10.5.0.3
+    db:
+        hostname: smart-house-db
+        image: postgres
+        restart: always
+        ports:
+            - '8002:5432'
+        environment:
+            POSTGRES_PASSWORD: 'securePassword'
+            PGPASSWORD: 'securePassword'
+        volumes:
+            - ./test/smarthouse/db:/var/lib/postgresql/data
+        networks:
+            vpcbr:
+                ipv4_address: 10.5.0.4
+
+    adminer:
+        hostname: smart-house-adminer
+        image: adminer
+        restart: always
+        ports:
+            - 8010:8080
+        networks:
+            vpcbr:
+                ipv4_address: 10.5.0.5
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
