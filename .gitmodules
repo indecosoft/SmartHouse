@@ -1,9 +1,9 @@
-[submodule "SmartHouse-Sensors"]
-	path = SmartHouse-Sensors
-	url = https://github.com/VFX10/SmartHouse-Sensors
+#[submodule "SmartHouse-Sensors"]
+#	path = SmartHouse-Sensors
+#	url = https://github.com/VFX10/SmartHouse-Sensors
 [submodule "SmartHouse-Server"]
 	path = SmartHouse-Server
 	url = https://github.com/VFX10/SmartHouse-Server
-[submodule "smart_house_mobile"]
-	path = smart_house_mobile
-	url = https://github.com/VFX10/SmartHouse-Mobile
+#[submodule "smart_house_mobile"]
+#	path = smart_house_mobile
+#	url = https://github.com/VFX10/SmartHouse-Mobile
