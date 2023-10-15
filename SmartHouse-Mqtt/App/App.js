@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.App = void 0;
 var net = require('net');
 var config_1 = require("../config");
 var aedes = require('aedes')();
@@ -14,10 +15,10 @@ var App = /** @class */ (function () {
         aedes.authorizeSubscribe = function (client, packet, callback) {
             // console.log(client); 
             if (!_this.isJson(client.id)) {
-                return callback(new Error("Invalid device -> " + client.id));
+                return callback(new Error("Invalid device -> ".concat(client.id)));
             }
             else {
-                console.log('\x1b[33m%s', "Client " + client.id + " subscribed to channel " + packet.topic);
+                console.log('\x1b[33m%s', "Client ".concat(client.id, " subscribed to channel ").concat(packet.topic));
                 switch (packet.topic) {
                     case 'response':
                         return callback(null, packet);
@@ -27,7 +28,9 @@ var App = /** @class */ (function () {
                         return callback(null, packet);
                     case 'SensorsConfigChannel':
                         return callback(null, packet);
-                    case 'SensorsSettingsChannel': // only sensors 
+                    case 'SensorsSettingsChannel':
+                        console.log(client);
+                        // only sensors 
                         var data = { client: client ? client.id : client, status: 'online' };
                         var payload = {
                             cmd: 'publish',
@@ -37,7 +40,7 @@ var App = /** @class */ (function () {
                         aedes.publish(payload);
                         return callback(null, packet);
                     default:
-                        console.log('\x1b[31m%s', "Client " + client.id + " subscribed rej to channel " + packet.topic);
+                        console.log('\x1b[31m%s', "Client ".concat(client.id, " subscribed rej to channel ").concat(packet.topic));
                         return callback(new Error('Wrong topic'));
                 }
             }
@@ -109,6 +112,7 @@ var App = /** @class */ (function () {
                         var obj = JSON.parse(packet.payload.toString());
                         console.log('objjjj', obj);
                         console.log('client iddddd', JSON.parse(client.id.toString()));
+                        console.log(JSON.parse(client.id.toString()).name === obj.macAddress.toUpperCase());
                         return JSON.parse(client.id.toString()).name === obj.macAddress.toUpperCase() ? packet : null;
                     }
                     return null;
@@ -119,7 +123,7 @@ var App = /** @class */ (function () {
         aedes.authenticate = function (_client, _username, _password, callback) {
             callback(null, true, true);
         };
-        console.log("MQTT server running on port " + config_1.port + "!");
+        console.log("MQTT server running on port ".concat(config_1.port, "!"));
     }
     App.prototype.isJson = function (str) {
         try {

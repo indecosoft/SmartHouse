@@ -40,8 +40,11 @@ export class App {
                     case 'SensorsConfigChannel':
 
                         return callback(null, packet);
-                    case 'SensorsSettingsChannel': // only sensors 
+                    case 'SensorsSettingsChannel':
+                        console.log(client);
+                        // only sensors 
                         const data = { client: client ? client.id : client, status: 'online' };
+
                         const payload = {
                             cmd: 'publish',
                             topic: 'SensorsStatusChannel',
@@ -54,54 +57,56 @@ export class App {
                         return callback(new Error('Wrong topic'));
                 }
             }
-            
+
 
         };
         aedes.on('unsubscribe', (subscriptions: any, client: any) => {
             console.log('unsubscribe', subscriptions);
-            console.log('unsubscribe',client.id);
-            if(this.isJson(client.id) && JSON.parse(client.id).account){
+            console.log('unsubscribe', client.id);
+            if (this.isJson(client.id) && JSON.parse(client.id).account) {
                 console.log('MQTT device \x1b[32m' + (client ? client.id : client) +
-                '\x1b[0m unsubscribed to topics: ' + subscriptions.join('\n'), 'from broker', aedes.id);
-                
-                if(subscriptions[0] == 'SensorsSettingsChannel') {
+                    '\x1b[0m unsubscribed to topics: ' + subscriptions.join('\n'), 'from broker', aedes.id);
+
+
+                if (subscriptions[0] == 'SensorsSettingsChannel') {
                     console.log('status changed');
                     const data = { client: client ? client.id : client, status: 'offline' };
                     const payload = {
                         cmd: 'publish',
-                        topic: 'SensorsStatusChannel', 
+                        topic: 'SensorsStatusChannel',
                         payload: Buffer.from(JSON.stringify(data)),
                     }
                     aedes.publish(payload);
                 }
-                
+
             } else {
                 console.log('MQTT hub/user \x1b[32m' + (client ? client.id : client) +
-                '\x1b[0m unsubscribed to topics: ' + subscriptions.join('\n'), 'from broker', aedes.id)
+                    '\x1b[0m unsubscribed to topics: ' + subscriptions.join('\n'), 'from broker', aedes.id)
             }
-            
+
         });
-        aedes.authorizePublish = (client: any, packet: any, callback: any) =>{
+        aedes.authorizePublish = (client: any, packet: any, callback: any) => {
             // if (!this.isJson(packet.payload.toString())){
             //     console.error(`Invalid packet was sent from client -> ${client.id}`);
             //     callback(new Error('Invalid packet'));
             // } else {
-                switch (packet.topic) {
-                    case 'response':
-                    case 'SensorsConfigChannel':
-                    case 'SensorsDataChannel':
-                    case 'SensorsStatusChannel':
-                    case 'SensorsSettingsChannel':
-                        return callback(null);
-                    default:
-                        return callback(new Error('Wrong topic'));
-                }
+            switch (packet.topic) {
+                case 'response':
+                case 'SensorsConfigChannel':
+                case 'SensorsDataChannel':
+                case 'SensorsStatusChannel':
+                case 'SensorsSettingsChannel':
+                    return callback(null);
+                default:
+                    return callback(new Error('Wrong topic'));
+            }
             // }
-            
+
         };
-        aedes.authorizeForward =  (client: any, packet: any) => {
+        aedes.authorizeForward = (client: any, packet: any) => {
             console.log('authorizeForward ' + client.id);
             console.log('authorizeForward topic ' + packet.topic);
+
             switch (packet.topic) {
                 case 'response':
                 case 'SensorsConfigChannel':
@@ -114,7 +119,7 @@ export class App {
                     return null;
                 case 'SensorsStatusChannel':
                     // return client.id === "Hub" ? packet : null;
-                    
+
                     if (this.isJson(client.id)) {
                         console.log('SensorsStatusChannel ' + client.id.toString());
                         console.log('SensorsStatusChannel payload ' + packet.payload.toString());
@@ -128,7 +133,8 @@ export class App {
                         let obj = JSON.parse(packet.payload.toString());
                         console.log('objjjj', obj);
                         console.log('client iddddd', JSON.parse(client.id.toString()));
-                        return JSON.parse(client.id.toString()).name === obj.macAddress.toUpperCase() ? packet : null; 
+                        console.log(JSON.parse(client.id.toString()).name === obj.macAddress.toUpperCase());
+                        return JSON.parse(client.id.toString()).name === obj.macAddress.toUpperCase() ? packet : null;
                     } return null;
 
                 default:
@@ -136,10 +142,9 @@ export class App {
             }
         };
         aedes.authenticate = function (_client: any, _username: any, _password: any, callback: any) {
-
-            callback(null, true, true); 
+            callback(null, true, true);
         };
         console.log(`MQTT server running on port ${port}!`);
     }
-    
+
 }
