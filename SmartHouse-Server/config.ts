@@ -1,17 +1,17 @@
 export const db = {
-    host: '10.10.0.2',
+    host: process.env.DB_URL || 'localhost',
     database: 'FamiliaSmartHouse',
     user: 'postgres',
-    port: 5431,
+    port: Number(process.env.DB_PORT) || 1234,
     password: 'PostgresConnect2016#Secure',
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000
 }
-export const mqttServerAddress = '10.3.141.159';
+export const mqttServerAddress = process.env.MQTT_URL || 'localhost';
 export const mqttOptions = {
-    port: 1883,
-    host: `mqrr://10.3.141.159`,
+    port: Number(process.env.MQTT_PORT) || 1883,
+    host: `mqrr://${process.env.MQTT_URL || 'localhost'}`,
     clientId: '{"name" : "Hub"}',
     clean: true,
     encoding: 'utf8',
