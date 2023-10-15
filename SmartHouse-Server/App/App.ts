@@ -6,7 +6,7 @@ import cors from '@koa/cors';
 import { router } from './Routes/Routes'
 import { port } from '../config';
 import mqttConnection from './Utils/Mqtt';
-import { db } from '../config-example';
+import { db } from '../config';
 
 
 export class App {
