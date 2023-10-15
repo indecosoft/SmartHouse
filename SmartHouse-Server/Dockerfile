@@ -3,6 +3,7 @@ FROM node:16-alpine
 
 ENV DB_URL='localhost'
 ENV DB_NAME='DatabaseName'
+ENV DB_USER='postgres'
 ENV DB_PASSWORD='password'
 ENV DB_PORT=5431
 ENV MQTT_URL='localhost'
@@ -26,7 +27,7 @@ RUN tsc
 
 
 # Expose application port
-EXPOSE 80
+EXPOSE ${PORT}
 
 # Start the application
 CMD ["node", "./server.js"]

@@ -1,17 +1,17 @@
 export const db = {
-    host: process.env.DB_URL || 'localhost',
-    database: process.env.DB_NAME || 'DatabaseName',
-    user: 'postgres',
-    port: Number(process.env.DB_PORT) || 1234,
-    password: process.env.DB_PASSWORD || 'SecurePassword',
+    host: process.env.DB_URL,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    port: Number(process.env.DB_PORT),
+    password: process.env.DB_PASSWORD,
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000
 }
-export const mqttServerAddress = process.env.MQTT_URL || 'localhost';
+export const mqttServerAddress = process.env.MQTT_URL;
 export const mqttOptions = {
-    port: Number(process.env.MQTT_PORT) || 1883,
-    host: `mqrr://${process.env.MQTT_URL || 'localhost'}`,
+    port: Number(process.env.MQTT_PORT),
+    host: `mqrr://${process.env.MQTT_URL}`,
     clientId: '{"name" : "Hub"}',
     clean: true,
     encoding: 'utf8',
