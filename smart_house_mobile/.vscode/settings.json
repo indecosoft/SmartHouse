@@ -1,0 +1,7 @@
+{
+    "GitHooks.hooksDirectory": "/Users/voicu.babiciu/NexaVault/Personal/[1] Projects/[1] Programming/SmartHouse/smart_house_mobile/.git/hooks",
+    "files.exclude": {
+        "**/*.freezed.dart": true,
+        "**/*.g.dart": true
+    }
+}

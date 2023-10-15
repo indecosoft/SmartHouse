@@ -1,0 +1,28 @@
+{
+  "token": "e84aee94a6dd6952f26650bfebe0b332:61d1471da95a70a237e8fa26fb3c596832d49ff40ce05536e275b5b576886322731f60478ae75ef659040f2922add3bcb38093528271bfd90c1956e9664b08195c8250fe5fdb566657dc59f8bf4a2dfcec84083dafd9f024dbf9ba75778a4eabc946b359ce2cf829e9acc382afa4da0758a0983a53bd9c7f11a8d5a10265f844c1eca434afd26ac5be74a44d4345bebd4901d16bf4104d78e1c0421b9c309bead8eaa6a2ff2fca6099f9dbd7dee3a002",
+  "userData": {
+    "id": 3,
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "email": "john.doe@domain.com"
+  },
+  "defaultHouse": {
+    "id": 3,
+    "name": "My House",
+    "address": "Fake address",
+    "rooms": [
+      {
+        "id": 2,
+        "houseId": 3,
+        "name": "Office",
+        "typeId": 3
+      },
+      {
+        "id": 3,
+        "houseId": 3,
+        "name": "Kitchen",
+        "typeId": 2
+      }
+    ]
+  }
+}
