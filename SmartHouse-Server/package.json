@@ -1,0 +1,47 @@
+{
+  "name": "smart-house-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "@types/bluebird": "^3.5.26",
+    "@types/crypto-js": "^3.1.43",
+    "@types/dateformat": "^3.0.0",
+    "@types/jsonwebtoken": "^8.3.2",
+    "@types/koa": "^2.0.48",
+    "@types/koa__cors": "^2.2.3",
+    "@types/koa-bodyparser": "^4.2.2",
+    "@types/koa-router": "^7.0.40",
+    "@types/koa-static": "^4.0.1",
+    "@types/mssql": "4.0.13",
+    "@types/nodemailer": "^4.6.7",
+    "@types/pg": "^7.4.14",
+    "base64-img": "^1.0.4",
+    "bluebird": "^3.5.3",
+    "crypto-js": "^3.1.9-1",
+    "dateformat": "^3.0.3",
+    "firebase-admin": "^8.10.0",
+    "generate-password": "^1.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.1",
+    "koa-cors": "0.0.16",
+    "koa-router": "^12.0.0",
+    "koa-static": "^5.0.0",
+    "mqtt": "^3.0.0",
+    "mqtt-connection": "^4.0.0",
+    "nodemailer": "^6.9.5",
+    "nodemon": "^3.0.1",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.4"
+  }
+}
