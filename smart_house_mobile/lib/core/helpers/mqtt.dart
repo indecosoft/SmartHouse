@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:Homey/core/router.dart';
 import 'package:flutter/services.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
@@ -10,23 +11,29 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'mqtt.g.dart';
 
 @riverpod
-Mqtt mqtt(MqttRef ref, ValueChanged<Map<String, dynamic>>? onStateChanged,
+Mqtt mqtt(
+    MqttRef ref,
+    String macAddress,
+    ValueChanged<Map<String, dynamic>>? onStateChanged,
     ValueChanged<bool>? onStatusChanged) {
   ref.onDispose(() => ref.state.disconnect());
-  return Mqtt(onStateChanged, onStatusChanged)..connect();
+  return Mqtt(macAddress, ref.watch(currentUserProvider).value!.email,
+      onStateChanged, onStatusChanged)
+    ..connect();
 }
 
 class Mqtt {
-  Mqtt(this.onStateChanged, this.onStatusChanged);
+  Mqtt(this.macAddress, this.clientIdentifier, this.onStateChanged,
+      this.onStatusChanged);
 
   final ValueChanged<Map<String, dynamic>>? onStateChanged;
   final ValueChanged<bool>? onStatusChanged;
-  // final String macAddress;
+  final String? macAddress;
   final String broker = '10.3.141.159';
   final int port = 9001;
   final String username = 'matteo';
   final String passwd = '1234';
-  final String clientIdentifier = 'android';
+  final String clientIdentifier;
   MqttClient? client;
   MqttConnectionState? connectionState;
   StreamSubscription<List<MqttReceivedMessage<MqttMessage>>>?
@@ -39,7 +46,7 @@ class Mqtt {
       ..keepAlivePeriod = 30;
 
     final MqttConnectMessage connMess = MqttConnectMessage()
-        .withClientIdentifier('{"name": "test@test.com"}')
+        .withClientIdentifier('{"name": "$clientIdentifier"}')
         // .keepAliveFor(
         //     60 * 5) // Must agree with the keep alive set above or not set
         .startClean() // Non persistent session for testing
@@ -85,7 +92,10 @@ class Mqtt {
   }
 
   void onSensorDataChanged(Map<String, dynamic> payload) {
-    onStateChanged?.call(payload['data']);
+    if (macAddress?.toLowerCase() ==
+        payload['macAddress'].toString().toLowerCase()) {
+      onStateChanged?.call(payload['data']);
+    }
     // if (macAddress.toLowerCase() ==
     //     payload['macAddress'].toString().toLowerCase()) {
     //   print(payload['data']);
@@ -109,7 +119,11 @@ class Mqtt {
   }
 
   Future<void> onSensorStatusChanged(Map<String, dynamic> payload) async {
-    onStatusChanged?.call(payload['status'] == 'online');
+    if (macAddress?.toLowerCase() ==
+        payload['macAddress'].toString().toLowerCase()) {
+      onStatusChanged?.call(payload['status'] == 'online');
+    }
+
     // if (macAddress.toLowerCase() ==
     //     jsonDecode(payload['client'])['name'].toString().toLowerCase()) {
     //   log('is ok');

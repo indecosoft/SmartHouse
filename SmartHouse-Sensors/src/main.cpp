@@ -241,6 +241,10 @@ void loop()
     {
       mqttClient->publish("SensorsDataChannel", data.c_str());
     }
+    if (sensorType == SENSOR_LIGHT)
+    {
+      delay(30 * 1000);
+    }
   }
   else
   {

@@ -11,7 +11,7 @@ class DeviceStateViewModel extends _$DeviceStateViewModel {
   // AsyncDeviceStateViewModel(this.macAddress);
   @override
   Stream<Device?> build(String macAddress) {
-    ref.watch(mqttProvider((payload) {
+    ref.watch(mqttProvider(macAddress, (payload) {
       ref.watch(deviceRepositoryProvider).updateDeviceData(payload, macAddress);
     }, (payload) {
       ref

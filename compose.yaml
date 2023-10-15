@@ -2,6 +2,7 @@ version: '3.3'
 services:
     api:
         hostname: smart-house-api
+        container_name: smart_house_api
         environment:
             - PORT=5000
             - MQTT_PORT=1883
@@ -24,6 +25,7 @@ services:
 
     mqtt:
         hostname: smart-house-mqtt
+        container_name: smart_house_mqtt
         ports:
             - '9001:1883'
         restart: always
