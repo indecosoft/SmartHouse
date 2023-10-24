@@ -1,6 +1,16 @@
 # Familia SmartHouse
 
 
+# Deploy backend
+
+```bash
+cd SmartHouse-Server
+docker build . -t smart_house_server
+cd ../SmartHouse-Mqtt
+docker build . -t smart_house_mqtt
+cd ..
+docker compose up
+```
 
 # RPI configuration
 
