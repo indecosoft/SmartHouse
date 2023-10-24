@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'network.g.dart';
 
-const String _baseUrl = 'http://10.3.141.159:9000';
+const String _baseUrl = 'http://smart.housey.ro';
 // const String _baseUrl = 'http://10.20.20.10:8000';
 
 @riverpod

@@ -1,6 +1,6 @@
 #include <libs/MqttHelper/MqttHelperDefinition.hpp>
 
-MqttHelper::MqttHelper(Config *config = new Config(), Sensor *relay = nullptr, int port = 9001)
+MqttHelper::MqttHelper(Config *config = new Config(), Sensor *relay = nullptr, int port = 1883)
 {
     this->config = config;
     this->relay = relay;

@@ -34,7 +34,7 @@ class DeviceConfig extends HookConsumerWidget {
       sensorNameController.text = next.value?.sensorName ?? '';
       readingFrequencyController.text =
           next.value?.freqMinutes.toString() ?? '';
-      serverController.text = next.value?.server ?? '';
+      serverController.text = '89.37.212.155';
       portController.text = next.value?.port.toString() ?? '';
     });
     final deviceDetails = ref.watch(deviceDetailsProvider(deviceIp)).value;

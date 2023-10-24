@@ -29,8 +29,8 @@ class Mqtt {
   final ValueChanged<Map<String, dynamic>>? onStateChanged;
   final ValueChanged<bool>? onStatusChanged;
   final String? macAddress;
-  final String broker = '10.3.141.159';
-  final int port = 9001;
+  final String broker = '89.37.212.155';
+  final int port = 1883;
   final String username = 'matteo';
   final String passwd = '1234';
   final String clientIdentifier;
