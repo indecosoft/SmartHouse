@@ -1,7 +1,0 @@
-{
-    "files.exclude": {
-        "**/*.js": true,
-        "**/*.js.map": true
-    },
-    "GitHooks.hooksDirectory": "/Users/voicu.babiciu/NexaVault/Personal/[1] Projects/[1] Programming/SmartHouse/SmartHouse-Server/.git/hooks"
-}
