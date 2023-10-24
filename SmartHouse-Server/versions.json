@@ -1,0 +1,10 @@
+{
+    "desktopClient": {
+        "version": "5.0.0",
+        "downloadUrl": "http://membri.maltez.ro/api/software/download/desktopClient/"
+    },
+    "mobileClient": {
+        "version": "1.0.0",
+        "downloadUrl": "http://membri.maltez.ro/api/software/download/mobileClient/"
+    }
+}

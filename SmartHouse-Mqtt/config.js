@@ -1,3 +1,4 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.port = process.env.PORT || 1883;
+exports.port = void 0;
+exports.port = 1883;
